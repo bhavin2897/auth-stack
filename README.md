@@ -4,7 +4,7 @@
 1. Copy env template:
    cp .env.example .env
 
-2. Edit `.env` and set strong passwords.
+2. Edit `.env` and set strong passwords. (ToDo)
 
 3. Start:
    docker compose up -d
