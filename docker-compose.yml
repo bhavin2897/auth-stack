@@ -41,6 +41,21 @@ services:
     ports:
       - "9090:8080"
 
+  backend:
+    build: ./backend
+    container_name: backend
+    restart: unless-stopped
+    environment:
+      KEYCLOAK_BASE_URL: http://keycloak:8080
+      KEYCLOAK_REALM: trr-portal
+      KEYCLOAK_AUDIENCE: portal-backend
+    depends_on:
+      - keycloak
+    networks:
+      - internal
+    ports:
+      - "9000:8000"
+
 volumes:
   pgdata:
 
