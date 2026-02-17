@@ -3,6 +3,7 @@ from fastapi import FastAPI, Depends, HTTPException
 from fastapi.security import HTTPBearer, HTTPAuthorizationCredentials
 import httpx
 from jose import jwt
+from .auth import verify_bearer
 
 app = FastAPI(title="portal-backend")
 bearer = HTTPBearer()
@@ -52,9 +53,11 @@ def health():
     return {"status": "ok"}
 
 @app.get("/me")
-async def me(claims=Depends(require_user)):
+async def me(creds: HTTPAuthorizationCredentials = Depends(bearer)):
+    claims = await verify_bearer(creds)
     return {
+        "sub": claims.get("sub"),
         "preferred_username": claims.get("preferred_username"),
         "email": claims.get("email"),
-        "sub": claims.get("sub"),
+        "aud": claims.get("aud"),
     }

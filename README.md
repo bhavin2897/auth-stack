@@ -13,4 +13,4 @@
    docker logs -f keycloak
 
 Keycloak UI (temporary):
-- http://SERVER_IP:8080
+- http://lablsk-trr375-01-21.service.tib.eu:9090/admin/master/console/ 

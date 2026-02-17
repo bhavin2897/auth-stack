@@ -48,7 +48,9 @@ services:
     environment:
       KEYCLOAK_BASE_URL: http://keycloak:8080
       KEYCLOAK_REALM: trr-portal
-      KEYCLOAK_AUDIENCE: portal-backend
+      KEYCLOAK_ISSUER: "http://lablsk-trr375-01-21.service.tib.eu:9090/realms/trrdev"
+      KEYCLOAK_JWKS_URL: "http://lablsk-trr375-01-21.service.tib.eu:9090/realms/trrdev/protocol/openid-connect/certs"
+      KEYCLOAK_AUDIENCE: "trr-backend"
     depends_on:
       - keycloak
     networks:
